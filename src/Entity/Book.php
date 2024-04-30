@@ -31,6 +31,9 @@ class Book
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $genre = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $isbn = null;
+
     #[ORM\OneToOne(targetEntity: Loan::class, mappedBy: 'book', cascade: ["persist", "remove"])]
     private ?Loan $loan = null;
 
@@ -110,5 +113,15 @@ class Book
         $this->loan = $loan;
 
         return $this;
+    }
+
+    public function getIsbn(): ?string
+    {
+        return $this->isbn;
+    }
+
+    public function setIsbn(?string $isbn): void
+    {
+        $this->isbn = $isbn;
     }
 }
