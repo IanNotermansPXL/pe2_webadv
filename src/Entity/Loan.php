@@ -17,7 +17,7 @@ class Loan
     #[ORM\ManyToOne(inversedBy: 'loans')]
     private ?User $user = null;
 
-    #[ORM\ManyToOne(inversedBy: 'loans')]
+    #[ORM\OneToOne(inversedBy: 'loans')]
     private ?Book $book = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
