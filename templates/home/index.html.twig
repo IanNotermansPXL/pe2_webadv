@@ -3,13 +3,13 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container mx-auto text-center">
         <section id="team" class="mb-4">
-            <h2>Team</h2>
-            <div class="row">
+            <h2 class="mb-5" style="margin-top: 10px">Team</h2>
+            <div class="row justify-content-center">
                 <div class="col-md-4">
-                    <div class="card">
-                        <img src="{{ asset('images/FotoIan.jpg') }}" class="card-img-top" alt="Ian">
+                    <div class="card shadow">
+                        <img src="{{ asset('images/FotoIan.jpg') }}" class="card-img-top mx-auto d-block" alt="Ian" style="height: 560px; object-fit: cover">
                         <div class="card-body">
                             <h5 class="card-title">Ian Notermans</h5>
                             <p class="card-text">Frontend Developer</p>
@@ -17,8 +17,8 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card">
-                        <img src="{{ asset('images/FotoSander.jpg') }}" class="card-img-top" alt="Sander">
+                    <div class="card shadow">
+                        <img src="{{ asset('images/FotoSander.jpg') }}" class="card-img-top mx-auto d-block" alt="Sander" style="height: 560px; object-fit: cover">
                         <div class="card-body">
                             <h5 class="card-title">Sander Baens</h5>
                             <p class="card-text">Frontend Developer</p>
@@ -27,5 +27,20 @@
                 </div>
             </div>
         </section>
+    </div>
+    <div class="container mx-auto">
+        <div class="card shadow mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Beschrijving Opdracht</h5>
+                <p class="card-text">
+                    De opdracht omvat het maken van een desktopapplicatie met Symfony MVC-framework,
+                    MySQL-database en Twig-templating voor boekenuitleenbeheer.
+                    Het project omvat een welkomstpagina met teamintroductie en opdrachtbeschrijving,
+                    een menubalk voor navigatie, en functionaliteiten voor tonen, filteren, toevoegen, wijzigen en verwijderen van gegevens.
+                    Bootstrap wordt gebruikt voor de lay-out, en validatie moet worden geïmplementeerd voor toevoegen en wijzigen van gegevens.
+                </p>
+            </div>
+        </div>
+
     </div>
 {% endblock %}
