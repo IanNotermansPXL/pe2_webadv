@@ -31,16 +31,9 @@ class Book
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $genre = null;
 
-    /**
-     * @var Collection<int, Loan>
-     */
-    #[ORM\OneToOne(targetEntity: Loan::class, mappedBy: 'book')]
-    private Collection $loans;
+    #[ORM\OneToOne(targetEntity: Loan::class, mappedBy: 'book', cascade: ["persist", "remove"])]
+    private ?Loan $loan = null;
 
-    public function __construct()
-    {
-        $this->loans = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -107,32 +100,14 @@ class Book
         return $this;
     }
 
-    /**
-     * @return Collection<int, Loan>
-     */
-    public function getLoans(): Collection
+    public function getLoan(): ?Loan
     {
-        return $this->loans;
+        return $this->loan;
     }
 
-    public function addLoan(Loan $loan): static
+    public function setLoan(?Loan $loan): static
     {
-        if (!$this->loans->contains($loan)) {
-            $this->loans->add($loan);
-            $loan->setBook($this);
-        }
-
-        return $this;
-    }
-
-    public function removeLoan(Loan $loan): static
-    {
-        if ($this->loans->removeElement($loan)) {
-            // set the owning side to null (unless already changed)
-            if ($loan->getBook() === $this) {
-                $loan->setBook(null);
-            }
-        }
+        $this->loan = $loan;
 
         return $this;
     }
