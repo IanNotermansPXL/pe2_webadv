@@ -4,8 +4,28 @@
 
 {% block body %}
     <div class="container">
-        <h1>Welcome to our Book Loan Application</h1>
-        <p>This application is developed by Team XYZ. It is designed to track book loans.</p>
-        <img src="{{ asset('images/team.jpg') }}" alt="Team Photo">
+        <section id="team" class="mb-4">
+            <h2>Team</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ asset('images/IanFoto.jpg') }}" class="card-img-top" alt="Team Member">
+                        <div class="card-body">
+                            <h5 class="card-title">Ian Notermans</h5>
+                            <p class="card-text">Frontend Developer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <img src="{{ asset('images/team-member.jpg') }}" class="card-img-top" alt="Team Member">
+                        <div class="card-body">
+                            <h5 class="card-title">John Doe</h5>
+                            <p class="card-text">Frontend Developer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 {% endblock %}
