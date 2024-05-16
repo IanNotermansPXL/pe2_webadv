@@ -29,6 +29,15 @@ class BookRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function findByNameStartingWith(string $value): array
+    {
+        return $this->createQueryBuilder('b')
+            ->andWhere('LOWER(b.title) LIKE :val')
+            ->setParameter('val', strtolower($value).'%')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Book[] Returns an array of Book objects
 //     */

@@ -4,21 +4,30 @@
 
 {% block body %}
     <div class="container">
+        <form action="{{ path('book_search') }}" method="get" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search books">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
         <div class="row">
             {% for book in books %}
-                <div class="col-md-4 mb-4">
+                <div class="col-12 col-sm-12 col-lg-4 mb-4">
                     <div class="card shadow overflow-hidden h-100">
-                            <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="Book cover" style="height: 400px; object-fit: contain"> <!-- Added line -->
-                            <div class="card-body">
-                                <h5 class="card-title">{{ book.title }}</h5>
-                                <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
-                                <p class="card-text"><strong>Publication Year:</strong> {{ book.publicationYear }}</p>
-                                <p class="card-text"><strong>Publisher:</strong> {{ book.publisher }}</p>
-                                <p class="card-text"><strong>Genre:</strong> {{ book.genre }}</p>
-                            </div>
-
+                        <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="Book cover" class="img-fluid">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                            <p class="card-text"><strong>Publication Year:</strong> {{ book.publicationYear }}</p>
+                            <p class="card-text"><strong>Publisher:</strong> {{ book.publisher }}</p>
+                            <p class="card-text"><strong>Genre:</strong> {{ book.genre }}</p>
+                            {% if loanStatuses[book.id] %}
+                                <button class="btn btn-primary" disabled>Loan</button>
+                            {% else %}
+                                <a href="{{ path('book_loan', {'id': book.id}) }}" class="btn btn-primary">Loan</a>
+                            {% endif %}
                         </div>
-
+                    </div>
                 </div>
             {% endfor %}
         </div>
