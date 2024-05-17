@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user.userIdentifier }}'s Loans{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>{{ app.user.userIdentifier }}'s Loans</h2>
+
+        {% if loans|length > 0 %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Loan ID</th>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Loan Date</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for loan in loans %}
+
+                <tr>
+                    <td>{{ loan.id }}</td>
+                    <td>{{ loan.book.title }}</td>
+                    <td>{{ loan.book.author }}</td>
+                    <td>{{ loan.loanDate|date('Y-m-d') }}</td>
+                    <td>
+                        <form method="post" action="{{ path('return_loan', {'id': loan.id}) }}">
+                            <input type="submit" value="Return" class="btn btn-dark" onclick="return confirm('Are you sure you want to return this book?')">
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No loans found.</p>
+        {% endif %}
+    </div>
+{% endblock %}
