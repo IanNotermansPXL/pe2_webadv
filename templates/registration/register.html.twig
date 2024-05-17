@@ -6,10 +6,11 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card mt-5">
+                <div class="card">
+                    <div class="card-header bg-dark text-white text-center">
+                        <h3>Register</h3>
+                    </div>
                     <div class="card-body">
-                        <h1 class="card-title text-center">Register</h1>
-
                         {{ form_start(registrationForm, {'attr': {'class': 'form'}}) }}
                         <div class="form-group">
                             {{ form_row(registrationForm.first_name, {'attr': {'class': 'form-control', 'placeholder': 'First Name'}}) }}
@@ -24,7 +25,7 @@
                             {{ form_row(registrationForm.password_hash, {'label': 'Password', 'attr': {'class': 'form-control', 'placeholder': 'Password'}}) }}
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        <button type="submit" class="btn btn-lg btn-dark btn-block">Register</button>
                         {{ form_end(registrationForm) }}
                     </div>
                 </div>
