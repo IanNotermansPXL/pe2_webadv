@@ -13,6 +13,7 @@
                     <th>Loan ID</th>
                     <th>Book</th>
                     <th>Author</th>
+                    <th>Genre</th>
                     <th>Loan Date</th>
                     <th></th>
                 </tr>
@@ -24,6 +25,7 @@
                     <td>{{ loan.id }}</td>
                     <td>{{ loan.book.title }}</td>
                     <td>{{ loan.book.author }}</td>
+                    <td>{{ loan.book.genre }}</td>
                     <td>{{ loan.loanDate|date('Y-m-d') }}</td>
                     <td>
                         <form method="post" action="{{ path('return_loan', {'id': loan.id}) }}">

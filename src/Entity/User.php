@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -22,15 +23,56 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+        message: 'Firstname cannot be empty',
+    )]
+    #[Assert\Type(
+        type: 'string',
+        message: '{{ value }} is not a valid {{ type }}.',
+    )]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Firstname must be at least {{ limit }} long',
+        maxMessage: 'Firstname must be shorter than {{ limit }}',
+    )]
     private ?string $first_name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+        message: 'Lastname cannot be empty',
+    )]
+    #[Assert\Type(
+        type: 'string',
+        message: '{{ value }} is not a valid {{ type }}.',
+    )]
+    #[Assert\Length(
+        min: 2,
+        max: 50,
+        minMessage: 'Lastname must be at least {{ limit }} long',
+        maxMessage: 'Lastname must be shorter than {{ limit }}',
+    )]
     private ?string $last_name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+        message: 'Password cannot be empty',
+    )]
+    #[Assert\Length(
+        min: 6,
+        max: 4096,
+        minMessage: 'Password must be at least {{ limit }} characters long',
+        maxMessage: 'Password must be shorter than {{ limit }} characters',
+    )]
     private ?string $password_hash = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(
+        message: 'Email cannot be empty',
+    )]
+    #[Assert\Email(
+        message: 'The email "{{ value }}" is not a valid email.',
+    )]
     private ?string $email = null;
 
     /**

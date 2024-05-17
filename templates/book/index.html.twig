@@ -11,7 +11,7 @@
             </div>
         </form>
         <div class="row">
-            {% for book in books %}
+            {% for book in pagination %}
                 <div class="col-12 col-sm-12 col-lg-4 mb-4">
                     <div class="card shadow overflow-hidden h-100">
                         <img src="https://covers.openlibrary.org/b/isbn/{{ book.isbn }}-L.jpg" alt="Book cover" class="img-fluid">
@@ -30,6 +30,9 @@
                     </div>
                 </div>
             {% endfor %}
+            <div class="navigation">
+                {{ knp_pagination_render(pagination, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+            </div>
         </div>
     </div>
 {% endblock %}
