@@ -22,7 +22,7 @@
                             <p class="card-text"><strong>Publisher:</strong> {{ book.publisher }}</p>
                             <p class="card-text"><strong>Genre:</strong> {{ book.genre }}</p>
                             {% if loanStatuses[book.id] %}
-                                <button class="btn btn-primary" disabled>Loan</button>
+                                <button class="btn btn-danger" disabled>Already Loaned</button>
                             {% else %}
                                 <a href="{{ path('book_loan', {'id': book.id}) }}" class="btn btn-primary">Loan</a>
                             {% endif %}

@@ -44,8 +44,14 @@ class BookController extends AbstractController
         $query = $request->query->get('q', '');
         $books = $bookRepository->findByNameStartingWith($query);
 
+        $loanStatuses = [];
+        foreach ($books as $book) {
+            $loanStatuses[$book->getId()] = $this->isBookLoaned($book->getId());
+        }
+
         return $this->render('book/index.html.twig', [
             'books' => $books,
+            'loanStatuses' => $loanStatuses,
         ]);
     }
 

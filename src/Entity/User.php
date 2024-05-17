@@ -19,6 +19,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+    private $roles = [];
 
     #[ORM\Column(length: 255)]
     private ?string $first_name = null;
@@ -128,7 +129,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function getRoles(): array
     {
-        return ['ROLE_USER'];
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
     public function getPassword(): string
@@ -162,6 +166,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         // TODO: Implement getUserIdentifier() method.
-        return "";
+        return $this->first_name . ' ' . $this->last_name;
     }
 }
