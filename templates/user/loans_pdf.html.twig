@@ -1,0 +1,34 @@
+{% extends 'base_pdf.html.twig' %}
+
+{% block title %}Loans of {{ app.user.userIdentifier }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h2>Loans of {{ app.user.userIdentifier }}</h2>
+
+        {% if loans|length > 0 %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Loan ID</th>
+                    <th>Book</th>
+                    <th>Author</th>
+                    <th>Loan Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for loan in loans %}
+                    <tr>
+                        <td>{{ loan.id }}</td>
+                        <td>{{ loan.book.title }}</td>
+                        <td>{{ loan.book.author }}</td>
+                        <td>{{ loan.loanDate|date('Y-m-d') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No loans found.</p>
+        {% endif %}
+    </div>
+{% endblock %}

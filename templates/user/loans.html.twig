@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ app.user.userIdentifier }}'s Loans{% endblock %}
+{% block title %}Loans of {{ app.user.userIdentifier }}{% endblock %}
 
 {% block body %}
     <div class="container">
-        <h2>{{ app.user.userIdentifier }}'s Loans</h2>
+        <h2>Loans of {{ app.user.userIdentifier }}</h2>
 
         {% if loans|length > 0 %}
             <table class="table">
@@ -34,6 +34,7 @@
                 {% endfor %}
                 </tbody>
             </table>
+            <a href="{{ path('loans_pdf') }}" class="btn btn-dark">Download PDF</a>
         {% else %}
             <p>No loans found.</p>
         {% endif %}
